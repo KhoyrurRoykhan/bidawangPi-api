@@ -27,4 +27,5 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(routes);
 
-app.listen(5000, ()=> console.log('Server up and running...'));
+const PORT = process.env.PORT
+app.listen(PORT, ()=> console.log(`Server up and running ${PORT}...`));
