@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsers, Register, Login, Logout, getProgresBelajarSiswa, getProgresTantanganSiswa, updateProgresBelajarSiswa, getKKM } from "../controllers/UserController.js";
+import { getUsers, Register, Login, Logout, getProgresBelajarSiswa, getProgresTantanganSiswa, updateProgresBelajarSiswa, getKKM, updateProgresTantanganSiswa } from "../controllers/UserController.js";
 import { getGuru, RegisterGuru, LoginGuru, LogoutGuru, getMeGuru, updateKKM, getKKMByToken } from "../controllers/GuruController.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { verifyGuruToken } from "../middleware/VerifyTokenGuru.js";
@@ -34,6 +34,7 @@ routes.delete('/users/:id', deleteUserById);
 routes.get('/user/progres-belajar', getProgresBelajarSiswa);
 routes.put('/user/progres-belajar', updateProgresBelajarSiswa);
 routes.get('/user/progres-tantangan', getProgresTantanganSiswa);
+routes.put('/user/progres-tantangan', updateProgresTantanganSiswa);
 routes.get('/kkm/kuis', verifyToken, getKKM);
 
 

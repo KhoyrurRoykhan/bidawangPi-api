@@ -295,6 +295,34 @@ export const updateProgresBelajarSiswa = async (req, res) => {
   }
 };
 
+// Controller untuk update progres_tantangan siswa berdasarkan token
+export const updateProgresTantanganSiswa = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+    if (!token) return res.status(401).json({ msg: "Token tidak ditemukan" });
+
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const userId = decoded.userId;
+
+    const { progres_tantangan } = req.body;
+
+    if (progres_tantangan == null)
+      return res.status(400).json({ msg: "Nilai progres_tantangan tidak boleh kosong" });
+
+    const user = await Users.findByPk(userId);
+    if (!user) return res.status(404).json({ msg: "Siswa tidak ditemukan" });
+
+    user.progres_tantangan = progres_tantangan;
+    await user.save();
+
+    res.json({ msg: "Progres tantangan berhasil diperbarui", progres_tantangan: user.progres_tantangan });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Terjadi kesalahan pada server" });
+  }
+};
+
 export const getKKM = async (req, res) => {
   try {
     const token_kelas = req.token_kelas; // dari JWT
