@@ -79,7 +79,9 @@ export const LoginGuru = async (req, res) => {
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: false, // coba
+      sameSite: 'none', // Set to 'none' for cross-origin cookies
     });
 
     res.json({ accessToken });
