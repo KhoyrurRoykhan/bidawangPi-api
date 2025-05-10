@@ -82,12 +82,13 @@ export const Login = async (req, res) => {
       where: { id: userId }
     });
 
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('refreshToken', refreshToken,{
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000
-    });
-
-    res.json({ accessToken });
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === 'production', // Set to true in production if using HTTPS
+      sameSite: 'none', // Set to 'none' for cross-origin cookies
+  });
+  res.json({ accessToken });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Terjadi kesalahan saat login" });
