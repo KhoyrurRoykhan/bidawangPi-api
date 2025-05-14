@@ -36,7 +36,7 @@ routes.put('/user/progres-belajar', updateProgresBelajarSiswa);
 routes.get('/user/progres-tantangan', getProgresTantanganSiswa);
 routes.put('/user/progres-tantangan', updateProgresTantanganSiswa);
 routes.get('/kkm/kuis', verifyToken, getKKM);
-routes.get('/nilai/by-user', verifyToken, getNilaiByUser);
+// routes.get('/nilai/by-user', verifyToken, getNilaiByUser);
 
 
 // Guru Routes
