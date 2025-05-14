@@ -339,20 +339,20 @@ export const getKKM = async (req, res) => {
   }
 };
 
-export const getNilaiByUser = async (req, res) => {
-  try {
-    const userId = req.userId; // dari middleware verifyToken
-    const nilai = await Nilai.findOne({
-      where: { id: userId }
-    });
+// export const getNilaiByUser = async (req, res) => {
+//   try {
+//     const userId = req.userId; // dari middleware verifyToken
+//     const nilai = await Nilai.findOne({
+//       where: { id: userId }
+//     });
 
-    if (!nilai) {
-      return res.status(404).json({ msg: "Data nilai tidak ditemukan" });
-    }
+//     if (!nilai) {
+//       return res.status(404).json({ msg: "Data nilai tidak ditemukan" });
+//     }
 
-    res.json(nilai);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: "Gagal mengambil data nilai" });
-  }
-};
+//     res.json(nilai);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ msg: "Gagal mengambil data nilai" });
+//   }
+// };

@@ -291,3 +291,18 @@ export const updateEvaluasi = async (req, res) => {
     res.status(500).json({ msg: "Gagal memperbarui nilai kuis_1" });
   }
 };
+
+// Nilai siswa yang sedang login
+export const getNilaiByUser = async (req, res) => {
+  const { email } = req;
+  try {
+    const user = await Users.findOne({ where: { email } });
+    if (!user) return res.status(404).json({ msg: "User tidak ditemukan" });
+
+    const nilai = await Nilai.findOne({ where: { id: user.id } });
+    res.json([nilai]); // Dibungkus array agar bisa .map di frontend
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Gagal mengambil nilai user" });
+  }
+};
