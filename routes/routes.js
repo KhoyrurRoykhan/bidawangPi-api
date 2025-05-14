@@ -1,5 +1,5 @@
 import express from "express";
-import { getUsers, Register, Login, Logout, getProgresBelajarSiswa, getProgresTantanganSiswa, updateProgresBelajarSiswa, getKKM, updateProgresTantanganSiswa, getNilaiByUser } from "../controllers/UserController.js";
+import { getUsers, Register, Login, Logout, getProgresBelajarSiswa, getProgresTantanganSiswa, updateProgresBelajarSiswa, getKKM, updateProgresTantanganSiswa } from "../controllers/UserController.js";
 import { getGuru, RegisterGuru, LoginGuru, LogoutGuru, getMeGuru, updateKKM, getKKMByToken } from "../controllers/GuruController.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { verifyGuruToken } from "../middleware/VerifyTokenGuru.js";
@@ -13,7 +13,7 @@ import { countUsersByTokenKelas,
     deleteUserById
     } from "../controllers/UserController.js";
 
-import { getAllNilaiSiswa, getNilaiByTokenKelas, getNilaiByKuis, updateKuis1, updateKuis2, updateKuis3, updateKuis4, updateKuis5, updateEvaluasi } from "../controllers/NilaiController.js";
+import { getAllNilaiSiswa, getNilaiByTokenKelas, getNilaiByKuis, updateKuis1, updateKuis2, updateKuis3, updateKuis4, updateKuis5, updateEvaluasi, getNilaiByUser } from "../controllers/NilaiController.js";
 
 const routes = express.Router();
 
@@ -36,7 +36,6 @@ routes.put('/user/progres-belajar', updateProgresBelajarSiswa);
 routes.get('/user/progres-tantangan', getProgresTantanganSiswa);
 routes.put('/user/progres-tantangan', updateProgresTantanganSiswa);
 routes.get('/kkm/kuis', verifyToken, getKKM);
-// routes.get('/nilai/by-user', verifyToken, getNilaiByUser);
 
 
 // Guru Routes
@@ -58,6 +57,8 @@ routes.put('/nilai/kuis-3', verifyToken, updateKuis3);
 routes.put('/nilai/kuis-4', verifyToken, updateKuis4);
 routes.put('/nilai/kuis-5', verifyToken, updateKuis5);
 routes.put('/nilai/evaluasi', verifyToken, updateEvaluasi);
+routes.get('/nilai/by-user', verifyToken, getNilaiByUser);
+
 
 
 
